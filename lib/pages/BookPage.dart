@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../Controller/pdfController.dart';
+
 class BookPage extends StatelessWidget {
   final String bookUrl;
   const BookPage({super.key, required this.bookUrl});
 
   @override
   Widget build(BuildContext context) {
-    // PdfController pdfController = Get.put(PdfController());
+    PdfController pdfController = Get.put(PdfController());
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(
@@ -27,17 +29,17 @@ class BookPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // pdfController.pdfViewerKey.currentState?.openBookmarkView();
+          pdfController.pdfViewerKey.currentState?.openBookmarkView();
         },
         child: Icon(
           Icons.bookmark,
           color: Theme.of(context).colorScheme.background,
         ),
       ),
-      // body: SfPdfViewer.network(
-      //   bookUrl,
-      //   key: pdfController.pdfViewerKey,
-      // ),
+      body: SfPdfViewer.network(
+        bookUrl,
+        key: pdfController.pdfViewerKey,
+      ),
     );
   }
 }
