@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_parmesan/Components/PrimaryButton.dart';
 import 'package:mobile_parmesan/config/Colors.dart';
 import 'package:get/get.dart';
-import 'package:mobile_parmesan/pages/Home.dart';
+import 'package:mobile_parmesan/pages/HomePage/Home.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -61,6 +61,7 @@ class WelcomePage extends StatelessWidget {
                       "Disclaimer",
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
+                    
                   ],
                 ),
                 const SizedBox(height: 10),

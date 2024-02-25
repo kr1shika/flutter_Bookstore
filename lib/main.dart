@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'parmesan',
       theme: lightTheme,
-      home: WelcomePage(),
+      home: const WelcomePage(),
     );
   }
 }
