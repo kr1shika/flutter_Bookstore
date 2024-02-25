@@ -21,14 +21,14 @@ class WelcomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 40),
                     Image.asset(
-                      "Assets/Images/book.png",
-                      width: 350,
+                      "Assets/Images/Reading.png",
+                      width: 320,
                     ),
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 20),
                     Text(
-                      "E - Book Store",
+                      "Parmesan E - Book Store",
                       style:
                           Theme.of(context).textTheme.headlineLarge?.copyWith(
                                 color: Theme.of(context).colorScheme.background,

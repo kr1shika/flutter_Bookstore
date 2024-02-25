@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:mobile_parmesan/Components/BookCard.dart';
+import 'package:mobile_parmesan/Components/BookTitle.dart';
 import 'package:mobile_parmesan/Models/Data.dart';
 import 'package:mobile_parmesan/config/Colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -125,25 +126,27 @@ class Home extends StatelessWidget {
                     ],
                   ),
 
-                    // SizedBox(height: 10),
-                    // Obx(() => Column(
-                    //   children: bookController.bookData
-                    //       .map(
-                    //         (e) => BookTile(
-                    //       ontap: () {
-                    //         Get.to(BookDetails(book: e));
-                    //       },
-                    //       title: e.title!,
-                    //       coverUrl: e.coverUrl!,
-                    //       author: e.author!,
-                    //       price: e.price!,
-                    //       rating: e.rating!,
-                    //       totalRating: 12,
-                    //     ),
-                    //   )
-                    //       .toList(),
+                    SizedBox(height: 10),
+                    // Obx(() =>
+                        Column(
+                      children: bookData
+                          .map(
+                            (e) => BookTitle(
+                          ontap: () {
+                            Get.to(BookInfo(book: e));
+                          },
+                          title: e.title!,
+                          coverUrl: e.coverUrl!,
+                          author: e.author!,
+                          price: e.price!,
+                          rating: e.rating!,
+                          totalRating: 12,
+                        ),
+                      )
+                          .toList(),
+                    )
                     // )
-                ]
+    ]
             ),
 
           )

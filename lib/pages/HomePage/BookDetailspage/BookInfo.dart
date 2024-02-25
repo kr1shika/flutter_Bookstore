@@ -45,7 +45,8 @@ class BookInfo extends StatelessWidget {
                     children: [
                       Text(
                         "About book",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style:  Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
                       ),
                     ],
                   ),
@@ -55,7 +56,8 @@ class BookInfo extends StatelessWidget {
                       Flexible(
                         child: Text(
                           book.description!,
-                          style: Theme.of(context).textTheme.labelMedium,
+                          style:  Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ],
@@ -65,7 +67,11 @@ class BookInfo extends StatelessWidget {
                     children: [
                       Text(
                         "About book",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary)
+
+                        ,
+
                       ),
                     ],
                   ),
@@ -75,7 +81,9 @@ class BookInfo extends StatelessWidget {
                       Flexible(
                         child: Text(
                           book.aboutAuthor!,
-                          style: Theme.of(context).textTheme.labelMedium,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Theme.of(context).colorScheme.primary)
+                          ,
                         ),
                       ),
                     ],
