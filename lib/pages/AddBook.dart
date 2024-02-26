@@ -113,20 +113,82 @@ class AddBook extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Column(
               children: [
-                Row( mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center ,
-                      children: [
-                        Icon(Icons.upload_file_rounded),
-                              Text("Book PDF"),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Obx(
+                            () => Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: bookController.pdfUrl.value == ""
+                                ? Theme.of(context).colorScheme.background
+                                : Theme.of(context).colorScheme.background,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: bookController.isPdfUploading.value
+                              ? Center(
+                            child: CircularProgressIndicator(
+                              color: backgroudColor,
+                            ),
+                          )
+                              : bookController.pdfUrl.value == ""
+                              ? InkWell(
+                            onTap: () {
+                              bookController.pickPDF();
+                            },
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    "Assets/Icons/upload.png"),
+                                SizedBox(width: 8),
+                                Text(
+                                  "Book PDF",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                              : InkWell(
+                            onTap: () {
+                              bookController.pdfUrl.value = "";
+                            },
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "Assets/Icons/delete.png",
+                                  width: 20,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  "Delete Pdf",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                ),)],),
+                ),
 
 
 
@@ -148,7 +210,7 @@ class AddBook extends StatelessWidget {
                       controller: bookController.pages),
 
                     ),
-                  SizedBox(width: 12,) ,
+                  SizedBox(width: 20,) ,
                   Expanded(child: textFormField(hintText: "Price",
                       icon: Icons.currency_rupee_outlined,
                       controller: bookController.price),
@@ -164,7 +226,7 @@ class AddBook extends StatelessWidget {
                       controller: bookController.language),
 
                   ),
-                   SizedBox(width: 12,) ,
+                   SizedBox(width: 0,) ,
                   // Expanded(child: textFormField(hintText: "Audio lenght",
                   //     icon: Icons.audio_file,
                   //     controller: controller),

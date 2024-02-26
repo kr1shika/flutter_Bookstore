@@ -20,7 +20,7 @@ class BookController extends GetxController {
   TextEditingController auth = TextEditingController();
   TextEditingController aboutAuth = TextEditingController();
   TextEditingController pages = TextEditingController();
-  TextEditingController audioLen = TextEditingController();
+  // TextEditingController audioLen = TextEditingController();
   TextEditingController language = TextEditingController();
   TextEditingController price = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
@@ -98,14 +98,20 @@ class BookController extends GetxController {
       author: auth.text,
       aboutAuthor: aboutAuth.text,
       price: int.parse(price.text),
+
+
+
       pages: int.parse(pages.text),
       language: language.text,
-      audioLen: audioLen.text,
-      audioUrl: "",
-      rating: "",
+      // audioLen: audioLen.text,
+      // audioUrl: "",
+      // rating: "",
     );
 
     await db.collection("Books").add(newBook.toJson());
+    print("Price text: ${price.text}");
+    print("Pages text: ${pages.text}");
+
     addBookInUserDb(newBook);
     isPostUploading.value = false;
     title.clear();
@@ -113,7 +119,6 @@ class BookController extends GetxController {
     aboutAuth.clear();
     pages.clear();
     language.clear();
-    audioLen.clear();
     auth.clear();
     price.clear();
     imageUrl.value = "";
