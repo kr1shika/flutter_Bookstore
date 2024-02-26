@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:mobile_parmesan/Components/biggerTextField.dart';
 import 'package:mobile_parmesan/Components/textFormField.dart';
+import 'package:mobile_parmesan/Controller/BookController.dart';
+import 'package:mobile_parmesan/Controller/pdfController.dart';
 import 'package:mobile_parmesan/config/Colors.dart';
 
 import '../Components/BackButton.dart';
@@ -12,6 +15,8 @@ class AddBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController controller= TextEditingController();
+    PdfController pdfController=Get.put(PdfController());
+    BookController bookController=Get.put(BookController());
     return Scaffold(body: SingleChildScrollView(
       child: Column(
         children: [
@@ -53,19 +58,43 @@ class AddBook extends StatelessWidget {
                     ),
                     SizedBox(height: 25),
 
-                    Container(
-                      height: 130,
-                      width: 100,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Theme.of(context).colorScheme.secondary,),
-                     
-                      child: Icon(Icons.add),
-                    ),
+                    InkWell(
+                        onTap: () {
+                          bookController.pickImage();
+                        },
+                        child: Obx(
+                              () => Container(
+                            height: 190,
+                            width: 150,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Theme.of(context).colorScheme.background,
+                            ),
+                              child: Center(
+                              child: bookController.isImageUploading.value
+                                  ? CircularProgressIndicator(
+                                color: primaryColor,
+                              )
+                                  : bookController.imageUrl.value == ""
+                                  ? Image.asset(
+                                  "Assets/Icons/addImage.png")
+                                  : ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                    child: Image.network(
+                                    bookController.imageUrl.value,
+                                      fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )),
 
 
                     SizedBox(height: 8),
 
                     Text(
-                      // "${authController.auth.currentUser!.email}",
+
                       "Add Book Cover",
                       style:
                       Theme.of(context).textTheme.labelLarge?.copyWith(
@@ -102,27 +131,27 @@ class AddBook extends StatelessWidget {
 
 
                 SizedBox(height: 15,),
-                    textFormField(hintText: "Book",
+                    textFormField(hintText: "Title",
                         icon: Icons.book,
-                        controller: controller),
+                        controller: bookController.title),
                 SizedBox(height: 16,),
 
-                biggerTextField(hintText: "Synopsis", icon: Icons.read_more, controller: controller),
+                biggerTextField(hintText: "Synopsis", icon: Icons.read_more, controller: bookController.des),
                 SizedBox(height: 16,),
                 textFormField(hintText: "Author Name",
                     icon: Icons.person,
-                    controller: controller),
+                    controller: bookController.auth),
                 SizedBox(height: 16,),
                 Row(children: [
                   Expanded(child: textFormField(hintText: "Pages",
                       icon: Icons.book,
-                      controller: controller),
+                      controller: bookController.pages),
 
                     ),
                   SizedBox(width: 12,) ,
                   Expanded(child: textFormField(hintText: "Price",
                       icon: Icons.currency_rupee_outlined,
-                      controller: controller),
+                      controller: bookController.price),
 
                   )
 
@@ -132,104 +161,104 @@ class AddBook extends StatelessWidget {
                 Row(children: [
                   Expanded(child: textFormField(hintText: "Language",
                       icon: Icons.voice_chat,
-                      controller: controller),
+                      controller: bookController.language),
 
                   ),
                    SizedBox(width: 12,) ,
-                  Expanded(child: textFormField(hintText: "Audio lenght",
-                      icon: Icons.audio_file,
-                      controller: controller),
-
-                  )
+                  // Expanded(child: textFormField(hintText: "Audio lenght",
+                  //     icon: Icons.audio_file,
+                  //     controller: controller),
+                  //
+                  // )
 
 
                 ],),
                 SizedBox(height: 10,),
                 textFormField(hintText: "About Author",
                     icon: Icons.book,
-                    controller: controller),
+                    controller: bookController.aboutAuth),
 
               //
-              //   SizedBox(height: 20),
-                //                 Row(
-                //                   children: [
-                //                     Expanded(
-                //                       child: Container(
-                //                         padding: EdgeInsets.all(16),
-                //                         decoration: BoxDecoration(
-                //                             borderRadius: BorderRadius.circular(10),
-                //                             border: Border.all(
-                //                               width: 2,
-                //                               color: Colors.red,
-                //                             )),
-                //                         child: Row(
-                //                           mainAxisAlignment: MainAxisAlignment.center,
-                //                           children: [
-                //                             Icon(
-                //                               Icons.close,
-                //                               color: Colors.red,
-                //                             ),
-                //                             SizedBox(width: 8),
-                //                             Text(
-                //                               "CANCLE",
-                //                               style: Theme.of(context)
-                //                                   .textTheme
-                //                                   .bodyLarge
-                //                                   ?.copyWith(
-                //                                     color: Colors.red,
-                //                                   ),
-                //                             ),
-                //                           ],
-                //                         ),
-                //                       ),
-                //                     ),
-                //                     SizedBox(width: 10),
-                //                     Expanded(
-                //                         child: Obx(
-                //                       () => Container(
-                //                         padding: EdgeInsets.all(16),
-                //                         decoration: BoxDecoration(
-                //                           color: Theme.of(context).colorScheme.primary,
-                //                           borderRadius: BorderRadius.circular(10),
-                //                         ),
-                //                         child: bookController.isPdfUploading.value
-                //                             ? Center(
-                //                                 child: CircularProgressIndicator(),
-                //                               )
-                //                             : InkWell(
-                //                                 onTap: () {
-                //                                   bookController.createBook();
-                //                                 },
-                //                                 child: Row(
-                //                                   mainAxisAlignment: MainAxisAlignment.center,
-                //                                   children: [
-                //                                     Icon(
-                //                                       Icons.upload_sharp,
-                //                                       color: Theme.of(context)
-                //                                           .colorScheme
-                //                                           .background,
-                //                                     ),
-                //                                     SizedBox(width: 8),
-                //                                     Text(
-                //                                       "POST",
-                //                                       style: Theme.of(context)
-                //                                           .textTheme
-                //                                           .bodyLarge
-                //                                           ?.copyWith(
-                //                                             color: Theme.of(context)
-                //                                                 .colorScheme
-                //                                                 .background,
-                //                                           ),
-                //                                     ),
-                //                                   ],
-                //                                 ),
-                //                               ),
-                //                       ),
-                //                     )),
+                SizedBox(height: 20),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            border: Border.all(
+                                              width: 2,
+                                              color: Colors.red,
+                                            )),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.close,
+                                              color: Colors.red,
+                                            ),
+                                            SizedBox(width: 8),
+                                            Text(
+                                              "CANCLE",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                    color: Colors.red,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Expanded(
+                                        child: Obx(
+                                      () => Container(
+                                        padding: EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).colorScheme.primary,
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: bookController.isPdfUploading.value
+                                            ? Center(
+                                                child: CircularProgressIndicator(),
+                                              )
+                                            : InkWell(
+                                                onTap: () {
+                                                  bookController.createBook();
+                                                },
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.upload_sharp,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .background,
+                                                    ),
+                                                    SizedBox(width: 8),
+                                                    Text(
+                                                      "POST",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyLarge
+                                                          ?.copyWith(
+                                                            color: Theme.of(context)
+                                                                .colorScheme
+                                                                .background,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      ),
+                                    )),
 
            ] ),
-          ),
-        ],
+          ]),
+    )],
       ),
 
     ),
