@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "596477561885",
+    "project_id": "parmesan-6cfe6",
+    "storage_bucket": "parmesan-6cfe6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596477561885:android:72e194ef71d1dee7b54af4",
+        "android_client_info": {
+          "package_name": "com.example.mobile_parmesan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDemsNTLnIaF4YW3Fwvag_C2vw2axLVxjc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_parmesan/Components/PrimaryButton.dart';
+import 'package:mobile_parmesan/Controller/AuthController.dart';
 import 'package:mobile_parmesan/config/Colors.dart';
 import 'package:get/get.dart';
 import 'package:mobile_parmesan/pages/HomePage/Home.dart';
@@ -9,6 +10,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController= Get.put(AuthController());
      return Scaffold(
       body: Column(
         children: [
@@ -83,7 +85,7 @@ class WelcomePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: PrimaryButton(
-              btnName: "Continie", ontap: () { Get.offAll(Home()); },
+              btnName: "Login With Google", ontap: () { authController.loginWithEmail();},
             
             ),
           )

@@ -13,6 +13,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:mobile_parmesan/Models/Data.dart';
 import '../Components/BackButton.dart';
 import '../Components/BookTitle.dart';
+import '../Controller/AuthController.dart';
 import 'AddBook.dart';
 
 class UserProfile extends StatelessWidget {
@@ -20,7 +21,7 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // AuthController authController = Get.put(AuthController());
+    AuthController authController = Get.put(AuthController());
     // BookController bookController = Get.put(BookController());
 
     return Scaffold(
@@ -64,7 +65,7 @@ class UserProfile extends StatelessWidget {
                           ),
                           IconButton(
                               onPressed: () {
-                                // authController.signout();
+                                authController.signout();
                               },
                               icon: Icon(
                                 Icons.exit_to_app,

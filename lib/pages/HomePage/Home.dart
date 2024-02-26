@@ -89,7 +89,7 @@ class Home extends StatelessWidget {
             ),
 
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 20),
 
           Padding(
             padding: const EdgeInsets.all(10),
@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                         ))],
                   ),
-                  SizedBox(height: 18,),
+                  SizedBox(height: 20,),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child:  Row(
@@ -116,17 +116,20 @@ class Home extends StatelessWidget {
                         ),).toList()
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 30),
                   Row(
                     children: [
                       Text(
-                        "Your Interests",
-                        style: Theme.of(context).textTheme.labelMedium,
+                        "YOUR INTERESTS",
+                        style: Theme.of(context).textTheme
+                            .labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        )
                       ),
                     ],
                   ),
 
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     // Obx(() =>
                         Column(
                       children: bookData
