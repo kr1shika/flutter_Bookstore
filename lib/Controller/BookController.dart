@@ -19,10 +19,10 @@ class BookController extends GetxController {
   TextEditingController des = TextEditingController();
   TextEditingController auth = TextEditingController();
   TextEditingController aboutAuth = TextEditingController();
-  TextEditingController pages = TextEditingController();
+  // TextEditingController pages = TextEditingController();
   // TextEditingController audioLen = TextEditingController();
   TextEditingController language = TextEditingController();
-  TextEditingController price = TextEditingController();
+  // TextEditingController price = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
   final storage = FirebaseStorage.instance;
   final db = FirebaseFirestore.instance;
@@ -97,11 +97,11 @@ class BookController extends GetxController {
       bookurl: pdfUrl.value,
       author: auth.text,
       aboutAuthor: aboutAuth.text,
-      price: int.parse(price.text),
+      // price: int.parse(price.text),
 
 
 
-      pages: int.parse(pages.text),
+      // pages: int.parse(pages.text),
       language: language.text,
       // audioLen: audioLen.text,
       // audioUrl: "",
@@ -109,18 +109,18 @@ class BookController extends GetxController {
     );
 
     await db.collection("Books").add(newBook.toJson());
-    print("Price text: ${price.text}");
-    print("Pages text: ${pages.text}");
+    // print("Price text: ${price.text}");
+    // print("Pages text: ${pages.text}");
 
     addBookInUserDb(newBook);
     isPostUploading.value = false;
     title.clear();
     des.clear();
     aboutAuth.clear();
-    pages.clear();
+    // pages.clear();
     language.clear();
     auth.clear();
-    price.clear();
+    // price.clear();
     imageUrl.value = "";
     pdfUrl.value = "";
     successMessage("Book added to the db");

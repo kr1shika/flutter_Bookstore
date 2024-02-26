@@ -14,6 +14,7 @@ import 'package:mobile_parmesan/Models/Data.dart';
 import '../Components/BackButton.dart';
 import '../Components/BookTitle.dart';
 import '../Controller/AuthController.dart';
+import '../Controller/BookController.dart';
 import 'AddBook.dart';
 
 class UserProfile extends StatelessWidget {
@@ -22,7 +23,7 @@ class UserProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthController authController = Get.put(AuthController());
-    // BookController bookController = Get.put(BookController());
+    BookController bookController = Get.put(BookController());
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -98,8 +99,8 @@ class UserProfile extends StatelessWidget {
                             color: Theme.of(context).colorScheme.background),
                       ),
                       Text(
-                        // "${authController.auth.currentUser!.email}",
-                        "1@gmail.com",
+                        "${authController.auth.currentUser!.email}",
+                        // "1@gmail.com",
                         style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: Theme.of(context)
@@ -123,9 +124,9 @@ class UserProfile extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 20),
-                  // Obx(() =>
-                      Column(
-                      children: bookData
+                  Obx(
+                        () => Column(
+                      children: bookController.currentUserBooks
                           .map((e) => BookTitle(
                         title: e.title!,
                         coverUrl: e.coverUrl!,
@@ -137,7 +138,7 @@ class UserProfile extends StatelessWidget {
                       ))
                           .toList(),
                     ),
-                  // )
+                  )
                 ],
               ),
             ),

@@ -205,17 +205,17 @@ class AddBook extends StatelessWidget {
                     controller: bookController.auth),
                 SizedBox(height: 16,),
                 Row(children: [
-                  Expanded(child: textFormField(hintText: "Pages",
-                      icon: Icons.book,
-                      controller: bookController.pages),
-
-                    ),
+                  // Expanded(child: textFormField(hintText: "Pages",
+                  //     icon: Icons.book,
+                  //     controller: bookController.pages),
+                  //
+                  //   ),
                   SizedBox(width: 20,) ,
-                  Expanded(child: textFormField(hintText: "Price",
-                      icon: Icons.currency_rupee_outlined,
-                      controller: bookController.price),
-
-                  )
+                  // Expanded(child: textFormField(hintText: "Price",
+                  //     icon: Icons.currency_rupee_outlined,
+                  //     controller: bookController.price),
+                  //
+                  // )
 
 
                 ],),
